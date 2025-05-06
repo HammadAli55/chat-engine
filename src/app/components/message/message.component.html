@@ -1,0 +1,5 @@
+<div class="message" [ngClass]="messageClass" [style.--user-color]="userColor">
+    <div class="username" *ngIf="!isSystem">{{ message.username }}</div>
+    <div class="content">{{ message.message }}</div>
+    <div class="timestamp">{{ message.timestamp | date:'shortTime' }}</div>
+</div>

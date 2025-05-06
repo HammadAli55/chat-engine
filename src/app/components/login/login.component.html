@@ -1,0 +1,12 @@
+<div class="login-container">
+    <h2>Join Chat Room</h2>
+    <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username" placeholder="Enter your username" autocomplete="off">
+    </div>
+    <div class="input-group">
+        <label for="room">Room</label>
+        <input type="text" id="room" name="room" [(ngModel)]="room" placeholder="Enter room name" autocomplete="off">
+    </div>
+    <button (click)="joinRoom()">Join</button>
+</div>

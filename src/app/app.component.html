@@ -1,0 +1,7 @@
+<div class="app-container">
+  <app-login *ngIf="!isLoggedIn" (onJoin)="onLogin($event)"></app-login>
+  <app-chat-room *ngIf="isLoggedIn" 
+    [username]="currentUser" 
+    [roomName]="currentRoom">
+  </app-chat-room>
+</div>
