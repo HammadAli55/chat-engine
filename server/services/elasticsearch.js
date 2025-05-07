@@ -15,6 +15,7 @@ const esClient = new Client({
  */
 async function setupElasticsearch() {
     try {
+        // esConfig.index -> return 'chat_messages'
         const indexExists = await esClient.indices.exists({
             index: esConfig.index
         });

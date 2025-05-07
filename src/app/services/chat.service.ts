@@ -7,11 +7,11 @@ import { Message } from '../models/message.model';
   providedIn: 'root'
 })
 export class ChatService {
-  private socket: Socket;
+  private socket!: Socket;
   private readonly SERVER_URL = 'http://localhost:3000';
 
   constructor() {
-    this.socket = io(this.SERVER_URL);
+    this.connect();
   }
 
   // Connect to socket server

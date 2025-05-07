@@ -8,6 +8,7 @@ const logger = require('../utils/logger');
 // Initialize Redis clients
 const redisClient = new Redis(redisConfig.url);
 const redisSubscriber = new Redis(redisConfig.url);
+const chatChannel = 'chat';
 
 /**
  * Setup Redis subscriptions
@@ -15,7 +16,7 @@ const redisSubscriber = new Redis(redisConfig.url);
 async function setupRedis() {
     try {
         // Subscribe to the chat channel
-        await redisSubscriber.subscribe('chat');
+        await redisSubscriber.subscribe(chatChannel);
 
         // Log successful connection
         logger.info('Redis subscriptions established');
@@ -60,7 +61,7 @@ async function storeMessage(messageData) {
         const roomKey = `room:${messageData.room}:messages`;
         await redisClient.lpush(roomKey, JSON.stringify(messageData));
         await redisClient.ltrim(roomKey, 0, redisConfig.messageHistoryLimit - 1);
-        await redisClient.publish('chat', JSON.stringify(messageData));
+        await redisClient.publish(chatChannel, JSON.stringify(messageData));
     } catch (error) {
         logger.error('Redis store message error:', error);
         throw error;
